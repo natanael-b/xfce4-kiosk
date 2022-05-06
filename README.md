@@ -12,7 +12,7 @@ Isso costuma resultar em usuários quebrando a interface e por não terem o conh
 
 # Como?
 
-Esse repositório pega o exato mesmo código da release atual do Ubuntu, e aplica um pequeno "remendo" no código que verifica se a variável ambiente `XFCE4_KIOSK_MODE` é igual a `1` caso seja, ela impede que o XFCE ative as opções do menu de contexto que permitem modificar a interface
+Esse repositório pega o exato mesmo código da release atual do Ubuntu, e aplica um pequeno "remendo" no código que verifica se a variável ambiente `XFCE4_KIOSK_MODE` está definida, caso esteja, ela impede que o XFCE ative as opções do menu de contexto que permitem modificar a interface
 
 # Onde baixo?
 
