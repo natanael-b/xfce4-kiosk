@@ -1,6 +1,5 @@
 #!/bin/bash
 
-exit 0
 sed -i 's|# deb-src|deb-src|g' /etc/apt/sources.list
 
 cat /etc/apt/sources.list
@@ -49,7 +48,7 @@ for plugin in ${plugins[@]}; do
   (
     source_dir=$(basename -s.tar.bz2 "${package}")
     
-    tar -xf "${package}"
+    tar -xf "${source_dir}"
     
     cd "${package}"
     
