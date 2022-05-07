@@ -26,6 +26,8 @@ dpkg-buildpackage -b
 
 cd ..
 
+apt install ./*.deb  # Instalar os pacotes gerados é necessário para recompilar plugins que não vem por padrão
+
 plugins=("xfce4-docklike-plugin")
 baseurl="https://archive.xfce.org/src/panel-plugins/"
 
@@ -41,7 +43,7 @@ for plugin in ${plugins[@]}; do
   echo 
   echo " Plugin: ${plugin}"
   echo "Version: ${version}"
-  echo     "URL: ${full_url}"
+  echo "    URL: ${full_url}"
   echo
   wget "${full_url}"
   echo
@@ -61,7 +63,7 @@ for plugin in ${plugins[@]}; do
 done
 
 
-apt install ./*.deb  # Instalar os pacotes gerados é necessário para recompilar plugins que não vem por padrão
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
