@@ -48,9 +48,9 @@ for plugin in ${plugins[@]}; do
   (
     source_dir=$(basename -s.tar.bz2 "${package}")
     
-    tar -xf "${source_dir}"
+    tar -xf "${package}"
     
-    cd "${package}"
+    cd "${source_dir}"
     
     ./configure
     make
