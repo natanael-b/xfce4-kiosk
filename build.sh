@@ -35,7 +35,7 @@ echo
 echo "---------------------------------------------------------------------------------------------"
 echo 
 
-package=$(mktemp -d)
+debian_package=$(mktemp -d)
 
 for plugin in ${plugins[@]}; do
   version=$(wget -q -O - "${baseurl}/${plugin}/"             | sed '$d' | sed '$d' | tail -n1 | cut -d\" -f2)
@@ -60,8 +60,8 @@ for plugin in ${plugins[@]}; do
     make
     make install | tee install-log
     
-    grep "installing" install-log | cut -d' ' -f 4 | sed "s|^|cp --parents --verbose |g;s|$| ${package}|g" | sh 
-    grep "libtool:"   install-log | cut -d' ' -f 6 | sed "s|^|cp --parents --verbose |g;s|$| ${package}|g" | sh 
+    grep "installing" install-log | cut -d' ' -f 4 | sed "s|^|cp --parents --verbose |g;s|$| ${debian_package}|g" | sh 
+    grep "libtool:"   install-log | cut -d' ' -f 6 | sed "s|^|cp --parents --verbose |g;s|$| ${debian_package}|g" | sh 
     
   )
   echo
