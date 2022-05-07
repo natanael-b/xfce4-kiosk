@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exit 0
 sed -i 's|# deb-src|deb-src|g' /etc/apt/sources.list
 
 cat /etc/apt/sources.list
