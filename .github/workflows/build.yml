@@ -16,6 +16,7 @@ jobs:
         run: sudo -E bash build.sh
         
       - name: Delete continuous Release
+        continue-on-error: true
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
           delete_release: true
