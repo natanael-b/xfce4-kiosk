@@ -35,6 +35,8 @@ echo
 echo "---------------------------------------------------------------------------------------------"
 echo 
 
+package=$(mktemp -d)
+
 for plugin in ${plugins[@]}; do
   version=$(wget -q -O - "${baseurl}/${plugin}/"             | sed '$d' | sed '$d' | tail -n1 | cut -d\" -f2)
   package=$(wget -q -O - "${baseurl}/${plugin}/${version}/"  | sed '$d' | sed '$d' | tail -n1 | cut -d\" -f2)
@@ -56,14 +58,15 @@ for plugin in ${plugins[@]}; do
     
     ./configure
     make
-    make install
+    make install | tee install-log
+    
+    grep "installing" install-log | cut -d' ' -f 4 | sed "s|^|cp --parents --verbose |g;s|$| ${package}|g" | sh 
+    grep "libtool:"   install-log | cut -d' ' -f 6 | sed "s|^|cp --parents --verbose |g;s|$| ${package}|g" | sh 
+    
   )
   echo
   echo "---------------------------------------------------------------------------------------------"
 done
-
-
-
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
