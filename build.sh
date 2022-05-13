@@ -63,6 +63,7 @@ for plugin in ${plugins[@]}; do
     grep "installing" install-log | cut -d' ' -f 4 | sed "s|^|cp --parents --verbose |g;s|$| ${debian_package}|g" | sh 
     grep "libtool:"   install-log | cut -d' ' -f 6 | sed "s|^|cp --parents --verbose |g;s|$| ${debian_package}|g" | sh 
     
+    cd..
   )
   echo
   echo "---------------------------------------------------------------------------------------------"
