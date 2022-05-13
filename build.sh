@@ -68,6 +68,21 @@ for plugin in ${plugins[@]}; do
   echo "---------------------------------------------------------------------------------------------"
 done
 
+mkdir -p "${debian_package}/DEBIAN"
+
+(
+ echo "Package: xfce4-plugins-extra"
+ echo "Priority: required"
+ echo "Version: $(date +%y.%m.%d%H%M%S)"
+ echo "Architecture: amd64"
+ echo "Maintainer: Natanael Barbosa Santos"
+ echo "Depends: xfce4-panel"
+ echo "Description: Plugins extras pro XFCE4-Panel"
+ echo
+) > ${debian_package}/DEBIAN/control
+
+dpkg -b ${debian_package} ./plugins.deb
+
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 tar -cvf pacotes.tar.gz *.deb
