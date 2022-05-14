@@ -38,10 +38,13 @@ cd ..
 working_dir=$(mktemp -d)
 
 for package in ./*.deb; do
-  dpkg -R ${package} ${working_dir}
+  [ -f "${package}" ] || continue
+
+  dpkg-deb -R ${package} ${working_dir}
   rm ${package}
   sed -i "s|^Version:.*|Version: ${version}|g" ${working_dir}/DEBIAN/control
   dpkg -b ${working_dir} .
+  
   rm -rf ${working_dir}/*
 done
 
