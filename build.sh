@@ -18,8 +18,6 @@ cd xfce4-panel-*
 
 version=$(grep "Standards-Version:" debian/control | cut -c 20-)9
 
-sed -i "s|^Standards-Version:.*|Standards-Version: ${version}|g" debian/control
-
 linha1=$(grep -n "^static GtkMenu \*$" libxfce4panel/xfce-panel-plugin.c  | cut -d\: -f1)
 linha2=$(grep -n "return plugin->priv->menu;" libxfce4panel/xfce-panel-plugin.c  | cut -d\: -f1)
 sed -i "${linha1},${linha2}s/gtk_widget_show (item);/\/\/ gtk_widget_show (item);/" libxfce4panel/xfce-panel-plugin.c
@@ -34,6 +32,18 @@ sed -i "${linha1},${linha2}s/gtk_menu_popup_at_pointer (menu, (GdkEvent/\/\/ gtk
 dpkg-buildpackage -b
 
 cd ..
+
+# Modifica a versão dos pacotes para evitar que o APT sobrescreva em um update
+
+working_dir=$(mktemp -d)
+
+for package in ./*.deb; do
+  dpkg -R ${package} ${working_dir}
+  rm ${package}
+  sed -i "s|^Version:.*|Version: ${version}|g" ${working_dir}/DEBIAN/control
+  dpkg -b ${working_dir} .
+  rm -rf ${working_dir}/*
+done
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
