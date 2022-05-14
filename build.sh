@@ -16,6 +16,10 @@ apt-get install xfce4-dev-tools
 
 cd xfce4-panel-*
 
+version=$(grep "Standards-Version:" debian/control | cut -c 20-)9
+
+sed -i "s|^Standards-Version:.*|Standards-Version: ${version}|g" debian/control
+
 linha1=$(grep -n "^static GtkMenu \*$" libxfce4panel/xfce-panel-plugin.c  | cut -d\: -f1)
 linha2=$(grep -n "return plugin->priv->menu;" libxfce4panel/xfce-panel-plugin.c  | cut -d\: -f1)
 sed -i "${linha1},${linha2}s/gtk_widget_show (item);/\/\/ gtk_widget_show (item);/" libxfce4panel/xfce-panel-plugin.c
