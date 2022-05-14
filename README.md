@@ -12,15 +12,19 @@ Isso costuma resultar em usuários quebrando a interface e por não terem o conh
 
 # Como?
 
-Esse repositório pega o exato mesmo código da release atual do Ubuntu, e aplica um pequeno "remendo" no código que verifica se a variável ambiente `XFCE4_KIOSK_MODE` está definida, caso esteja, ela impede que o XFCE ative as opções do menu de contexto que permitem modificar a interface
+Esse repositório pega o exato mesmo código da release atual do Ubuntu, e aplica um pequeno "remendo" no código que desativa as chamadas para as opções da biblioteca responsável pelo suporte a plugins que permitem alterar o painel diretamente
+
+# E se eu quiser editar?
+
+Nesse caso é bem simples, apenas a chamada através do clique no painel foi desativada, usando o terminal você pode chamar a mesma tela com o comando abaixo:
+
+```bash
+xfce4-panel -p
+```
 
 # Onde baixo?
 
-Acessando as Releases na Tag #Continuous você irá obter uma lista de arquivos, sendo ela:
-
-- `pacotes.tar.gz` nesse arquivo você encontra o `xfce4-panel` e todos os plugins que estão no repositório Ubuntu pré-compilados em `amd64`
-- `patches.tar.gz` nesse você encontra arquivos `.diff` gerados pelo script das modificações no `Whisker Menu` e no `xfce4-panel`
-- `fontes.tar.gz` e por fim nesse você encontra o arquivo de fontes que você pode usar para compilar você mesmo para outras arquiteturas
+Acessando as Releases na Tag #Continuous você irá obter o arquivo `pacotes.tar.gz` nesse arquivo você encontra o `xfce4-panel` e plugin docklike (por que não?) pré-compilados em `amd64`
 
 # Esse repositório está abandonado?
 
