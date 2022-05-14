@@ -24,7 +24,7 @@ xfce4-panel -p
 
 # Onde baixo?
 
-Acessando as Releases na Tag #Continuous você irá obter o arquivo `pacotes.tar.gz` nesse arquivo você encontra o `xfce4-panel` e plugin docklike (por que não?) pré-compilados em `amd64`
+Acessando as Releases na Tag #Continuous você irá obter o arquivo `pacotes.tar.gz` nesse arquivo você encontra o `xfce4-panel` e os plugins docklike e thunar-share (por que não?) pré-compilados em `amd64`
 
 # Esse repositório está abandonado?
 
