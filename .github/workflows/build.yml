@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build XFCE Panel and extra plugins
+      - name: Build XFCE Panel and the docklike plugin
         run: sudo -E bash build.sh
         
       - name: Delete continuous Release
